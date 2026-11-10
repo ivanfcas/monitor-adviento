@@ -2,11 +2,11 @@ name: Vigilar calendario de adviento Trendy
 
 on:
   schedule:
-    - cron: "*/15 * * * *"   # cada 15 min (GitHub puede retrasarlo unos minutos)
-  workflow_dispatch:          # permite ejecutarlo a mano desde la pestaña Actions
+    - cron: "7,22,37,52 * * * *"
+  workflow_dispatch:
 
 permissions:
-  contents: write             # para guardar vistos.json en el repo
+  contents: write
 
 concurrency:
   group: adviento
