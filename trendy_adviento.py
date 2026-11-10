@@ -21,8 +21,8 @@ from urllib.parse import quote
 import requests
 
 BASE = "https://www.maquillajetrendyshop.com"
-TERMINOS = ["labial"]
-PALABRAS_CLAVE = ("labial")
+TERMINOS = ["calendario de adviento", "adviento", "advent"]
+PALABRAS_CLAVE = ("adviento", "advent")
 ESTADO = Path(__file__).with_name("vistos.json")
 INTERVALO_SEG = 600
 HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; TrendyWatcher/1.0)"}
@@ -51,9 +51,12 @@ def encontrar_calendarios() -> dict:
     hallados = {}
     for termino in TERMINOS:
         try:
-            for p in buscar(termino):
+            productos = buscar(termino)
+            ejemplo = productos[0].get("productName", "?") if productos else "-"
+            print(f"[debug] '{termino}': {len(productos)} productos devueltos (ej: {ejemplo})")
+            for p in productos:
                 nombre = p.get("productName", "")
-                if any(k in nombre.lower() for k in PALABRAS_CLAVE):
+                if any(k.lower() in nombre.lower() for k in PALABRAS_CLAVE):
                     hallados[p["link"]] = nombre
         except Exception as e:
             print(f"[aviso] falló la búsqueda de '{termino}': {e}", file=sys.stderr)
