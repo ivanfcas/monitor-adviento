@@ -21,8 +21,8 @@ from urllib.parse import quote
 import requests
 
 BASE = "https://www.maquillajetrendyshop.com"
-TERMINOS = ["labial"]
-PALABRAS_CLAVE = ("labial")
+TERMINOS = ["calendario de adviento", "adviento", "calendario"]
+PALABRAS_CLAVE = ("adviento", "advent", "calendario")
 ESTADO = Path(__file__).with_name("vistos.json")
 INTERVALO_SEG = 600
 HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; TrendyWatcher/1.0)"}
